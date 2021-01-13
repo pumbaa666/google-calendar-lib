@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -39,7 +38,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class GoogleCalendarService
 {
-	private static final java.io.File DATA_STORE_DIR = new java.io.File(System.getProperty("user.home"), ".credentials/calendar-api-quickstart");
+	private static final java.io.File DATA_STORE_DIR = new java.io.File(System.getProperty("user.home"), ".credentials/pumbaa-google-calendar-lib");
 	private static FileDataStoreFactory DATA_STORE_FACTORY;
 	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 	private static HttpTransport HTTP_TRANSPORT;
@@ -66,7 +65,7 @@ public class GoogleCalendarService
 			HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 			DATA_STORE_FACTORY = new FileDataStoreFactory(DATA_STORE_DIR);
 		}
-		catch(IOException | GeneralSecurityException e)
+		catch(/*IOException | GeneralSecurityException*/ Exception e)
 		{
 			s_logger.error(e);
 			System.exit(1);
@@ -125,7 +124,7 @@ public class GoogleCalendarService
 		if(credential == null)
 			return null;
 
-		return new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("pumbaa-google-calendar").build();
+		return new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("pumbaa-google-calendar-lib").build();
 	}
 
 	/**
@@ -135,7 +134,7 @@ public class GoogleCalendarService
 	 */
 	private Credential authorize()
 	{
-		InputStream in = GoogleCalendarService.class.getResourceAsStream("/client_secret.json");
+		InputStream in = GoogleCalendarService.class.getResourceAsStream("/oauth-key.json");
 
 		try
 		{
@@ -152,7 +151,18 @@ public class GoogleCalendarService
 			GoogleAuthorizationCodeFlow flow = builder.build();
 
 			System.out.println("Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
-			Credential credential = new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
+			Credential credential = null;
+			try
+			{
+				credential = new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
+			}
+			catch(/*TokenResponse*/Exception e)
+			{
+				s_logger.fatal(e);
+				return null;
+			}
+			
+			
 			if(credential == null || credential.getAccessToken() == null || credential.getAccessToken().isEmpty()) // Le token est vide
 			{
 				if(DATA_STORE_DIR.exists() && cacheFileExist)
@@ -242,7 +252,7 @@ public class GoogleCalendarService
 			for(CalendarListEntry item:items)
 			{
 				allCalendar.add(item);
-				s_logger.debug(item.getSummary() + " : " + item.getId() + " / role = " + item.getAccessRole());
+				s_logger.debug(item.getSummary() + " (" + item.getAccessRole() + ")");
 			}
 			pageToken = calendarList.getNextPageToken();
 		}

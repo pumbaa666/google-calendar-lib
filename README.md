@@ -1,4 +1,4 @@
-# google-calendar-lib
+## google-calendar-lib
 Librairie Java pour Google Calendar API
 
 Permet de s'autentifier avec un compte Google et d'accéder en lecture/écriture à l'agenda de l'utilisateur.
