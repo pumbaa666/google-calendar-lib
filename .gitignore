@@ -1,4 +1,4 @@
-/src/main/resources/client_secret.json
 bin
-/src/main/resources/oauth.png
-/src/main/resources/README.md
+/target/
+divers
+.settings

@@ -1,7 +1,6 @@
 package ch.correvon.google.calendar.test;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import javax.swing.SwingWorker;
 import com.google.api.services.calendar.model.CalendarListEntry;
 import org.apache.commons.logging.Log;
