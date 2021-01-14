@@ -30,5 +30,5 @@ Class-Path:  ./lib/google-api-services-calendar-v3-rev58-1.16.0-rc.jar
  ./lib/google-api/transaction-api-1.1.jar
  ./lib/logging/commons-logging-1.1.jar
  ./lib/logging/log4j-1.2.13.jar
-Main-Class: ch.correvon.google.calendar.test.Test
+Main-Class: ch.correvon.google.calendar.use.MainGoogleCalendarLib
 

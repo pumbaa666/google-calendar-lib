@@ -38,7 +38,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class GoogleCalendarService
 {
-	private static final java.io.File DATA_STORE_DIR = new java.io.File(System.getProperty("user.home"), ".credentials/pumbaa-google-calendar-lib");
+	public static final java.io.File DATA_STORE_DIR = new java.io.File(System.getProperty("user.home"), ".credentials/pumbaa-google-calendar-lib");
 	private static FileDataStoreFactory DATA_STORE_FACTORY;
 	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 	private static HttpTransport HTTP_TRANSPORT;
