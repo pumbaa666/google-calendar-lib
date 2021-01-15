@@ -207,12 +207,8 @@ public class GoogleCalendarService
 
 		this.calendarId = this.getCalendar(calendarName, calendars);
 		if(this.calendarId == null)
-		{
-			s_logger.error("Impossible de trouver l'agenda \"" + calendarName + "\"");
 			return null;
-		}
 
-		s_logger.debug("Sélection de l'agenda \"" + calendarName + "\" : " + calendarId);
 		return this.calendarId;
 	}
 

@@ -15,13 +15,22 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
-		
+
 		<mainClass>ch.correvon.google.calendar.use.MainGoogleCalendarLib</mainClass>
-		
+
 		<google-api.version>1.20.0</google-api.version>
 		<apache-http.version>4.0.1</apache-http.version>
 		<jetty.version>6.1.26</jetty.version>
 	</properties>
+
+	<!-- https://docs.github.com/en/free-pro-team@latest/packages/guides/configuring-apache-maven-for-use-with-github-packages -->
+	<distributionManagement>
+		<repository>
+			<id>github-google-calendar-lib</id>
+			<name>GitHub pumbaa666 Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/pumbaa666/google-calendar-lib</url>
+		</repository>
+	</distributionManagement>
 
 	<!-- http://www.avajava.com/tutorials/lessons/how-do-i-specify-a-main-class-in-the-manifest-of-my-generated-jar-file.html -->
 	<build>
@@ -243,7 +252,6 @@
 			<version>${jetty.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-util -->
 		<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-util -->
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
