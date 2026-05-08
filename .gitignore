@@ -1,4 +1,5 @@
+oauth-key.json
+/target/
 bin
 divers
 .settings
-/target/
