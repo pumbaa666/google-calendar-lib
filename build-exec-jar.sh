@@ -1,0 +1,1 @@
+../google-calendar-quick-entry/build-exec-jar.sh
