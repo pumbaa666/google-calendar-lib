@@ -10,6 +10,12 @@ import ch.correvon.google.calendar.GoogleCalendarService;
 
 public class MainGoogleCalendarLib
 {
+	/*
+	 * TODO
+	 * cloner ce projet depuis ma VM linux et tester --help
+	 * version ligne de commande only (nunux)
+	 */
+	
 	private static Log s_logger = LogFactory.getLog(MainGoogleCalendarLib.class);
 	private static boolean done = false;
 	private static GoogleCalendarService service = null;
